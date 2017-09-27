@@ -1,0 +1,17 @@
+TRUNCATE TABLE member_info;
+INSERT INTO member_info (id, type, status, point) VALUES ('00000001', 'G', '0', 0);
+INSERT INTO member_info (id, type, status, point) VALUES ('00000002', 'N', '0', 0);
+INSERT INTO member_info (id, type, status, point) VALUES ('00000003', 'G', '1', 10);
+INSERT INTO member_info (id, type, status, point) VALUES ('00000004', 'N', '1', 10);
+INSERT INTO member_info (id, type, status, point) VALUES ('00000005', 'G', '0', 100);
+INSERT INTO member_info (id, type, status, point) VALUES ('00000006', 'N', '0', 100);
+INSERT INTO member_info (id, type, status, point) VALUES ('00000007', 'G', '1', 1000);
+INSERT INTO member_info (id, type, status, point) VALUES ('00000008', 'N', '1', 1000);
+INSERT INTO member_info (id, type, status, point) VALUES ('00000009', 'G', '0', 10000);
+INSERT INTO member_info (id, type, status, point) VALUES ('00000010', 'N', '0', 10000);
+INSERT INTO member_info (id, type, status, point) VALUES ('00000011', 'G', '1', 100000);
+INSERT INTO member_info (id, type, status, point) VALUES ('00000012', 'N', '1', 100000);
+INSERT INTO member_info (id, type, status, point) VALUES ('00000013', 'G', '1', 1000001);
+INSERT INTO member_info (id, type, status, point) VALUES ('00000014', 'N', '1', 999991);
+INSERT INTO member_info (id, type, status, point) VALUES ('00000015', 'G', '1', 999901);
+COMMIT;

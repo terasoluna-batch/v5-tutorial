@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.terasoluna.batch.tutorial.common.repository.MemberInfoRepository">
+
+    <select id="findAll" resultType="org.terasoluna.batch.tutorial.common.dto.MemberInfoDto">
+        SELECT
+            id,
+            type,
+            status,
+            point
+        FROM
+            member_info
+        ORDER BY
+            id ASC
+    </select>
+
+    <update id="updatePointAndStatus" parameterType="org.terasoluna.batch.tutorial.common.dto.MemberInfoDto">
+        UPDATE
+            member_info
+        SET
+            status = #{status},
+            point = #{point}
+        WHERE
+            id = #{id}
+    </update>
+</mapper>
+

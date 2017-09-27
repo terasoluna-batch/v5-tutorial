@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:batch="http://www.springframework.org/schema/batch"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+             http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+    <import resource="classpath:META-INF/spring/job-base-context.xml"/>
+
+    <context:annotation-config/>
+    <context:component-scan base-package="org.terasoluna.batch.tutorial.fileaccess.chunk"/>
+
+
+    <bean id="reader"
+          class="org.springframework.batch.item.file.FlatFileItemReader" scope="step"
+          p:resource="file:#{jobParameters['inputFile']}"
+          p:encoding="MS932"
+          p:strict="true">
+        <property name="lineMapper">
+            <bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+                <property name="lineTokenizer">
+                    <bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer"
+                          p:names="id,type,status,point"
+                          p:delimiter=","
+                          p:quoteCharacter='"'/>
+                </property>
+                <property name="fieldSetMapper">
+                    <bean class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper"
+                          p:targetType="org.terasoluna.batch.tutorial.common.dto.MemberInfoDto"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="writer"
+          class="org.springframework.batch.item.file.FlatFileItemWriter" scope="step"
+          p:resource="file:#{jobParameters['outputFile']}"
+          p:encoding="UTF-8"
+          p:lineSeparator="&#x0A;"
+          p:appendAllowed="false"
+          p:shouldDeleteIfExists="true"
+          p:transactional="true">
+        <property name="lineAggregator">
+            <bean class="org.springframework.batch.item.file.transform.DelimitedLineAggregator"
+                  p:delimiter=",">
+                <property name="fieldExtractor">
+                    <bean class="org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor"
+                          p:names="id,type,status,point"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <batch:job id="jobPointAddChunk" job-repository="jobRepository">
+        <batch:step id="jobPointAddChunk.step01">
+            <batch:tasklet transaction-manager="jobTransactionManager">
+                <batch:chunk reader="reader"
+                             processor="pointAddItemProcessor"
+                             writer="writer" commit-interval="10"/>
+            </batch:tasklet>
+        </batch:step>
+    </batch:job>
+
+</beans>
