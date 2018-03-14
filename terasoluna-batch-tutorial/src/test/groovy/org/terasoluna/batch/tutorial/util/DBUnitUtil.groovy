@@ -35,6 +35,7 @@ import org.springframework.core.io.ClassPathResource
 import org.springframework.jdbc.datasource.init.ScriptUtils
 
 import java.sql.Timestamp
+import java.time.Clock
 
 /**
  * Utility for DBUnit.
@@ -48,6 +49,7 @@ class DBUnitUtil {
     final String[] tables
     final String[] dropSqlFilePaths
     final String[] createSqlFilePaths
+    static final clock = Clock.systemDefaultZone()
 
     DBUnitUtil(String database = 'job') {
         conf = new ConfigSlurper().parse(
@@ -216,7 +218,7 @@ class DBUnitUtil {
 
     static final Map<String, Closure> defaultReplaceRule = [
             '[null]': { null },
-            '[now]' : { new Timestamp(System.currentTimeMillis()) }
+            '[now]' : { new Timestamp(clock.millis()) }
     ].asImmutable()
 
     static ReplacementDataSet createDataSet(Closure c, Map<String, Closure> replaceRule = defaultReplaceRule) {

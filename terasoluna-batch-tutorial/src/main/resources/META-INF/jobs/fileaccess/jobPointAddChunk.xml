@@ -10,9 +10,7 @@
 
     <import resource="classpath:META-INF/spring/job-base-context.xml"/>
 
-    <context:annotation-config/>
     <context:component-scan base-package="org.terasoluna.batch.tutorial.fileaccess.chunk"/>
-
 
     <bean id="reader"
           class="org.springframework.batch.item.file.FlatFileItemReader" scope="step"

@@ -52,7 +52,7 @@ import java.util.concurrent.TimeoutException
 @Slf4j
 class JobLauncher {
 
-    File _endFile
+    File _stopFile
 
     static final REMOTE_DEBUG_OPTION = '-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005'
 
@@ -146,8 +146,8 @@ class JobLauncher {
      * @return process
      */
     Process startAsyncBatchDaemon(String[] env = null, String[] sysprop = null) {
-        if (endFile().exists()) {
-            Files.delete(endFile().toPath())
+        if (stopFile().exists()) {
+            Files.delete(stopFile().toPath())
         }
 
         def remoteDebug = ''
@@ -203,7 +203,7 @@ class JobLauncher {
     }
 
     synchronized void stopAsyncBatchDaemon(Process p, long timeout = 30 * 1000L, TimeUnit timeUnit = TimeUnit.MILLISECONDS) {
-        File f = endFile()
+        File f = stopFile()
         if (!f.exists() && !f.createNewFile()) {
             throw new IOException("fail to create stop file: ${f.absolutePath}")
         }
@@ -212,16 +212,16 @@ class JobLauncher {
         }
     }
 
-    synchronized File endFile() {
-        if (_endFile != null) {
-            return _endFile
+    synchronized File stopFile() {
+        if (_stopFile != null) {
+            return _stopFile
         }
         // .properties file can not use ConfigSlurper because of https://issues.apache.org/jira/browse/GROOVY-4491
         def appProp = new Properties()
         new ClassPathResource('batch-application.properties').URL.withInputStream { inputStream ->
             appProp.load(inputStream)
         }
-        _endFile = new File(appProp['async-batch-daemon.polling-stop-file-path'] as String)
+        _stopFile = new File(appProp['async-batch-daemon.polling-stop-file-path'] as String)
     }
 
     synchronized static Process executeProcess(String command, String[] env = null, File workingPath = null) {

@@ -50,8 +50,8 @@ class AsyncExecutionJobSpec extends Specification {
         log.debug("### Spec case of [{}]", testName.methodName)
         adminDB.dropAndCreateTable()
         mongoUtil.deleteAll()
-        def endFile = launcher.endFile()
-        Files.deleteIfExists(endFile.toPath())
+        def stopFile = launcher.stopFile()
+        Files.deleteIfExists(stopFile.toPath())
     }
 
     def cleanupSpec() {
