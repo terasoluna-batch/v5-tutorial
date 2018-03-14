@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.terasoluna.batch</groupId>
     <artifactId>terasoluna-batch-tutorial</artifactId>
-    <version>5.0.1.RELEASE</version>
+    <version>5.0.4.RELEASE</version>
 
     <name>TERASOLUNA Batch Framework for Java (5.x) Tutorial Project</name>
     <description>Tutorial Project using TERASOLUNA Batch Framework for Java (5.x)</description>
@@ -48,6 +48,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <io.spring.platform.version>Athens-SR2</io.spring.platform.version>
+        <spring-framework-bom.version>4.3.14.RELEASE</spring-framework-bom.version>
         <terasoluna-batch.version>${project.version}</terasoluna-batch.version>
 
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
@@ -72,6 +73,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring-framework-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>io.spring.platform</groupId>
                 <artifactId>platform-bom</artifactId>
