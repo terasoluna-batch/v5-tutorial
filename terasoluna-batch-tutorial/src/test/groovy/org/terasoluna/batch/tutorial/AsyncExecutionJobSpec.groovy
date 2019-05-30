@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 NTT DATA Corporation
+ * Copyright (C) 2017 NTT DATA Corporation. Copyright (C) 2017 NTT Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-
 package org.terasoluna.batch.tutorial
 
 import groovy.util.logging.Slf4j

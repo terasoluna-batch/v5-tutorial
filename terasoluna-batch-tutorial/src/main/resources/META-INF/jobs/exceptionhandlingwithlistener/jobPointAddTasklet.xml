@@ -19,7 +19,7 @@
 
     <bean id="reader"
           class="org.mybatis.spring.batch.MyBatisCursorItemReader"
-          p:queryId="org.terasoluna.batch.tutorial.common.repository.MemberInfoRepository.findAll"
+          p:queryId="org.terasoluna.batch.tutorial.common.repository.MemberInfoRepository.cursor"
           p:sqlSessionFactory-ref="jobSqlSessionFactory"/>
 
     <bean id="writer" class="org.mybatis.spring.batch.MyBatisBatchItemWriter"

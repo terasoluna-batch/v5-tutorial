@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 NTT DATA Corporation
+ * Copyright (C) 2017 NTT DATA Corporation. Copyright (C) 2017 NTT Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,8 +29,8 @@ import java.util.concurrent.TimeoutException
 /**
  * CAUTION: If you use APIs in IDE:
  *  <ol>
- *    <li> Please set to java working directory to "/v5-inner-functionaltest/terasoluna-batch-functionaltest"</li>
- *    <li> Change directory to /v5-inner-functionaltest, Execute "mvn clean package" in advance.</li>
+ *    <li> Please set to java working directory to "/v5-inner-tutorial/terasoluna-batch-tutorial"</li>
+ *    <li> Change directory to /v5-inner-tutorial, Execute "mvn clean package" in advance.</li>
  *  </ol>
  * (If verify wholly by Maven, don't care above.)
  *

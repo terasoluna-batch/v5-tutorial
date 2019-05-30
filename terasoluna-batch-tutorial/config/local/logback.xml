@@ -12,10 +12,10 @@
     </appender>
 
     <appender name="fileLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/tmp/terasoluna-batch-functionaltest.log</file>
+        <file>/tmp/terasoluna-batch-tutorial.log</file>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-            <fileNamePattern>/tmp/terasoluna-batch-functionaltest.%i.log.zip</fileNamePattern>
+            <fileNamePattern>/tmp/terasoluna-batch-tutorial.%i.log.zip</fileNamePattern>
             <minIndex>1</minIndex>
             <maxIndex>5</maxIndex>
         </rollingPolicy>

@@ -4,7 +4,7 @@
 
 <mapper namespace="org.terasoluna.batch.tutorial.common.repository.MemberInfoRepository">
 
-    <select id="findAll" resultType="org.terasoluna.batch.tutorial.common.dto.MemberInfoDto">
+    <select id="cursor" resultType="org.terasoluna.batch.tutorial.common.dto.MemberInfoDto">
         SELECT
             id,
             type,

@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.terasoluna.batch</groupId>
     <artifactId>terasoluna-batch-tutorial</artifactId>
-    <version>5.1.1.RELEASE</version>
+    <version>5.2.1.RELEASE</version>
 
     <name>TERASOLUNA Batch Framework for Java (5.x) Tutorial Project</name>
     <description>Tutorial Project using TERASOLUNA Batch Framework for Java (5.x)</description>
@@ -44,46 +44,55 @@
     </repositories>
 
     <properties>
-        <jdk.version>1.8</jdk.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <io.spring.platform.version>Brussels-SR5</io.spring.platform.version>
-        <spring-framework-bom.version>4.3.14.RELEASE</spring-framework-bom.version>
-        <terasoluna-batch.version>${project.version}</terasoluna-batch.version>
-
-        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
-        <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
-        <maven-resources-plugin.version>3.0.1</maven-resources-plugin.version>
+        <!-- == Maven Plugin Versions == -->
+        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+        <groovy-eclipse-compiler.version>3.0.0-01</groovy-eclipse-compiler.version>
+        <groovy-eclipse-batch.version>2.5.4-01</groovy-eclipse-batch.version>
+        <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+        <maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
+        <maven-failsafe-plugin.version>2.22.0</maven-failsafe-plugin.version>
         <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
         <formatter-maven-plugin.version>0.5.2</formatter-maven-plugin.version>
 
-        <project.root.basedir>${project.basedir}</project.root.basedir>
-        <maven-dependency-plugin.version>2.10</maven-dependency-plugin.version>
+        <!-- == Dependency Versions == -->
+        <!-- == Spring Boot Dependencies == -->
+        <org.springframework.boot.version>2.1.2.RELEASE</org.springframework.boot.version>
+
+        <!-- == TERASOLUNA Batch == -->
+        <terasoluna-batch.version>${project.version}</terasoluna-batch.version>
+
+        <!-- == Spock == -->
+        <org.spockframework.spock-core.version>1.2-groovy-2.4</org.spockframework.spock-core.version>
+        <org.spockframework.spock-spring.version>1.2-groovy-2.4</org.spockframework.spock-spring.version>
+        <com.athaydes.spock-reports.version>1.6.1</com.athaydes.spock-reports.version>
+
+        <!-- == Mongo== -->
+        <mongo-java-driver.version>2.14.3</mongo-java-driver.version>
+        <com.gmongo.verson>1.5</com.gmongo.verson>
+
+        <!-- == DBUnit == -->
+        <org.dbunit.dbunit.version>2.5.4</org.dbunit.dbunit.version>
+
+        <!-- == Logback Contrib == -->
+        <ch.qos.logback.contrib.version>0.1.5</ch.qos.logback.contrib.version>
+
+        <!-- == Groovy == -->
+        <org.codehaus.groovy.version>2.4.16</org.codehaus.groovy.version>
+
+        <!-- == Project Properties == -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <encoding>UTF-8</encoding>
         <java-version>1.8</java-version>
-        <groovy-eclipse-compiler.version>2.9.2-01</groovy-eclipse-compiler.version>
-        <groovy-eclipse-batch.version>2.4.3-01</groovy-eclipse-batch.version>
-        <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
-        <mongo-java-driver.version>2.13.3</mongo-java-driver.version>
-        <org.dbunit.dbunit.version>2.5.3</org.dbunit.dbunit.version>
-        <com.gmongo.verson>1.5</com.gmongo.verson>
-        <com.athaydes.spock-reports.version>1.2.12</com.athaydes.spock-reports.version>
-        <ch.qos.logback.contrib.version>0.1.5</ch.qos.logback.contrib.version>
+        <project.root.basedir>${project.basedir}</project.root.basedir>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-framework-bom</artifactId>
-                <version>${spring-framework-bom.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.spring.platform</groupId>
-                <artifactId>platform-bom</artifactId>
-                <version>${io.spring.platform.version}</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${org.springframework.boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -119,6 +128,16 @@
                 <version>${mongo-java-driver.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-core</artifactId>
+                <version>${org.spockframework.spock-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-spring</artifactId>
+                <version>${org.spockframework.spock-spring.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.athaydes</groupId>
                 <artifactId>spock-reports</artifactId>
                 <version>${com.athaydes.spock-reports.version}</version>
@@ -128,6 +147,11 @@
                         <artifactId>*</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <version>${org.codehaus.groovy.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -139,7 +163,7 @@
         </dependency>
 
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
 
@@ -227,8 +251,8 @@
                         <compilerId>groovy-eclipse-compiler</compilerId>
                         <source>${java-version}</source>
                         <target>${java-version}</target>
-                        <testSource>${jdk.version}</testSource>
-                        <testTarget>${jdk.version}</testTarget>
+                        <testSource>${java-version}</testSource>
+                        <testTarget>${java-version}</testTarget>
                         <encoding>${project.build.sourceEncoding}</encoding>
                     </configuration>
                     <dependencies>
@@ -284,7 +308,7 @@
                         </execution>
                     </executions>
                 </plugin>
-                <!-- licence and formatter -->
+                <!-- license and formatter -->
                 <plugin>
                     <groupId>com.google.code.maven-license-plugin</groupId>
                     <artifactId>maven-license-plugin</artifactId>
@@ -362,7 +386,23 @@
             <resource>
                 <directory>${project.root.basedir}/${project.config.resource.directory}</directory>
             </resource>
-        </resources>    </build>
+        </resources>
+    </build>
+
+    <pluginRepositories>
+        <!-- === Groovy Maven Repository === -->
+        <pluginRepository>
+            <id>bintray</id>
+            <name>Groovy Bintray</name>
+            <url>https://dl.bintray.com/groovy/maven</url>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
     <profiles>
         <!-- Including application properties and log settings into package. (default) -->
@@ -401,6 +441,16 @@
             <id>it</id>
             <properties>
                 <project.config.resource.directory>config/it</project.config.resource.directory>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>jdk11</id>
+            <activation>
+                <jdk>11</jdk>
+            </activation>
+            <properties>
+                <java-version>11</java-version>
             </properties>
         </profile>
     </profiles>

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 NTT DATA Corporation
+ * Copyright (C) 2017 NTT DATA Corporation. Copyright (C) 2017 NTT Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,10 @@ package org.terasoluna.batch.tutorial.common.repository;
 
 import org.terasoluna.batch.tutorial.common.dto.MemberInfoDto;
 
-import java.util.List;
+import org.apache.ibatis.cursor.Cursor;
 
 public interface MemberInfoRepository {
-    List<MemberInfoDto> findAll();
+    Cursor<MemberInfoDto> cursor();
 
     int updatePointAndStatus(MemberInfoDto memberInfo);
 }
