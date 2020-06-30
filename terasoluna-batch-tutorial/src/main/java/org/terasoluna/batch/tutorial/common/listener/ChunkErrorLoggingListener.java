@@ -47,7 +47,7 @@ public class ChunkErrorLoggingListener implements ChunkListener {
     public void afterChunkError(ChunkContext chunkContext) {
         Exception e = (Exception) chunkContext.getAttribute(ChunkListener.ROLLBACK_EXCEPTION_KEY);
         if (e instanceof ValidationException) {
-            logger.error(messageSource.getMessage("errors.maxInteger", new String[] { "Point", "1000000" }, Locale
+            logger.error(messageSource.getMessage("errors.maxInteger", new String[] { "point", "1000000" }, Locale
                     .getDefault()));
         }
     }

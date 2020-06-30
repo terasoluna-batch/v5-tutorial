@@ -124,7 +124,7 @@ class ExceptionHandlingWithListenerJobSpec extends Specification {
         mongoUtil.find(new LogCondition(
                 level: 'ERROR',
                 logger: 'org.terasoluna.batch.tutorial.common.listener.ChunkErrorLoggingListener',
-                message: 'The Point exceeds 1000000.'
+                message: 'The point exceeds 1000000.'
         )).size() == 1
         def actualTable = jobDB.getTable('member_info')
         def expectTable = expectDatasetChunk.getTable('member_info')
@@ -146,7 +146,7 @@ class ExceptionHandlingWithListenerJobSpec extends Specification {
         mongoUtil.find(new LogCondition(
                 level: 'ERROR',
                 logger: 'org.terasoluna.batch.tutorial.common.listener.ChunkErrorLoggingListener',
-                message: 'The Point exceeds 1000000.'
+                message: 'The point exceeds 1000000.'
         )).size() == 1
         def actualTable = jobDB.getTable('member_info')
         def expectTable = expectDatasetTasklet.getTable('member_info')

@@ -21,7 +21,7 @@ import org.springframework.batch.core.StepExecutionListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ExitStatusChangeListener implements StepExecutionListener {
+public class StepExitStatusChangeListener implements StepExecutionListener {
 
     @Override
     public void beforeStep(StepExecution stepExecution) {
