@@ -71,7 +71,7 @@ class JobLauncher {
      * @return process exit code. (Integer.MAX_VALUE if return immediately)
      * @throws TimeoutException if exceeds timeout(only positive).
      */
-    int syncJob(JobRequest jobRequest, long timeout = 10 * 1000L, TimeUnit timeUnit = TimeUnit.MILLISECONDS,
+    int syncJob(JobRequest jobRequest, long timeout = 120 * 1000L, TimeUnit timeUnit = TimeUnit.MILLISECONDS,
                 String[] env = [], String[] sysprop = []) {
         assert jobRequest != null
         assert jobRequest.jobName != null
@@ -132,7 +132,7 @@ class JobLauncher {
 
     static class SyncJobArg {
         JobRequest jobRequest
-        long timeout = 10 * 1000L
+        long timeout = 120 * 1000L
         TimeUnit timeUnit = TimeUnit.MILLISECONDS
         String[] env = []
         String[] sysprop = []
