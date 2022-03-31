@@ -16,8 +16,6 @@
 package org.terasoluna.batch.tutorial
 
 import groovy.util.logging.Slf4j
-import org.junit.Rule
-import org.junit.rules.TestName
 import org.springframework.context.ApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext
 import org.terasoluna.batch.tutorial.util.DBUnitUtil
@@ -28,8 +26,6 @@ import spock.lang.Specification
 
 @Slf4j
 class DBAccessJobSpec extends Specification {
-    @Rule
-    TestName testName = new TestName()
 
     @Shared
             launcher = new JobLauncher()
@@ -109,7 +105,7 @@ class DBAccessJobSpec extends Specification {
     }
 
     def setup() {
-        log.debug("### Spec case of [{}]", testName.methodName)
+        log.debug("### Spec case of [{}]", this.specificationContext.currentIteration.displayName)
     }
 
     def cleanupSpec() {

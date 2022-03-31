@@ -16,8 +16,6 @@
 package org.terasoluna.batch.tutorial
 
 import groovy.util.logging.Slf4j
-import org.junit.Rule
-import org.junit.rules.TestName
 import org.terasoluna.batch.async.db.AsyncBatchDaemon
 import org.terasoluna.batch.tutorial.util.DBUnitUtil
 import org.terasoluna.batch.tutorial.util.JobLauncher
@@ -31,8 +29,6 @@ import java.nio.file.Files
 
 @Slf4j
 class AsyncExecutionJobSpec extends Specification {
-    @Rule
-    TestName testName = new TestName()
 
     @Shared
             launcher = new JobLauncher()
@@ -46,7 +42,7 @@ class AsyncExecutionJobSpec extends Specification {
     }
 
     def setup() {
-        log.debug("### Spec case of [{}]", testName.methodName)
+        log.debug("### Spec case of [{}]", this.specificationContext.currentIteration.displayName)
         adminDB.dropAndCreateTable()
         mongoUtil.deleteAll()
         def stopFile = launcher.stopFile()

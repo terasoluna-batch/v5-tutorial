@@ -16,8 +16,6 @@
 package org.terasoluna.batch.tutorial
 
 import groovy.util.logging.Slf4j
-import org.junit.Rule
-import org.junit.rules.TestName
 import org.slf4j.LoggerFactory
 import org.terasoluna.batch.tutorial.util.JobLauncher
 import org.terasoluna.batch.tutorial.util.JobRequest
@@ -26,8 +24,6 @@ import spock.lang.Specification
 
 @Slf4j
 class FileAccessJobSpec extends Specification {
-    @Rule
-    TestName testName = new TestName()
 
     @Shared
             log = LoggerFactory.getLogger(FileAccessJobSpec)
@@ -36,7 +32,7 @@ class FileAccessJobSpec extends Specification {
             jobLauncher = new JobLauncher()
 
     def setup() {
-        log.debug("### Spec case of [{}]", testName.methodName)
+        log.debug("### Spec case of [{}]", this.specificationContext.currentIteration.displayName)
         if (!new File(outputDir).deleteDir()) {
             throw new IllegalStateException("#deleteAll at setup-method failed.")
         }

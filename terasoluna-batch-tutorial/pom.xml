@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.terasoluna.batch</groupId>
     <artifactId>terasoluna-batch-tutorial</artifactId>
-    <version>5.4.0.RELEASE</version>
+    <version>5.4.1.RELEASE</version>
 
     <name>TERASOLUNA Batch Framework for Java (5.x) Tutorial Project</name>
     <description>Tutorial Project using TERASOLUNA Batch Framework for Java (5.x)</description>
@@ -45,40 +45,36 @@
     <properties>
         <!-- == Maven Plugin Versions == -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <groovy-eclipse-compiler.version>3.6.0-02</groovy-eclipse-compiler.version>
-        <groovy-eclipse-batch.version>2.5.8-02</groovy-eclipse-batch.version>
-        <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
-        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
-        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
-        <maven-failsafe-plugin.version>2.22.0</maven-failsafe-plugin.version>
-        <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
-        <formatter-maven-plugin.version>0.5.2</formatter-maven-plugin.version>
+        <groovy-eclipse-compiler.version>3.7.0</groovy-eclipse-compiler.version>
+        <groovy-eclipse-batch.version>3.0.8-01</groovy-eclipse-batch.version>
+        <maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
+        <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
+        <license-maven-plugin.version>4.1</license-maven-plugin.version>
+        <formatter-maven-plugin.version>2.15.0</formatter-maven-plugin.version>
 
         <!-- == Dependency Versions == -->
         <!-- == Spring Boot Dependencies == -->
-        <org.springframework.boot.version>2.4.1</org.springframework.boot.version>
+        <org.springframework.boot.version>2.6.1</org.springframework.boot.version>
 
         <!-- == TERASOLUNA Batch == -->
         <terasoluna-batch.version>${project.version}</terasoluna-batch.version>
 
         <!-- == Spock == -->
-        <org.spockframework.spock-core.version>1.3-groovy-2.5</org.spockframework.spock-core.version>
-        <org.spockframework.spock-spring.version>1.3-groovy-2.5</org.spockframework.spock-spring.version>
-        <com.athaydes.spock-reports.version>1.6.2</com.athaydes.spock-reports.version>
+        <org.spockframework.spock-core.version>2.0-groovy-3.0</org.spockframework.spock-core.version>
+        <org.spockframework.spock-spring.version>2.0-groovy-3.0</org.spockframework.spock-spring.version>
+        <com.athaydes.spock-reports.version>2.1-groovy-3.0</com.athaydes.spock-reports.version>
 
         <!-- == Mongo== -->
         <mongo-java-driver.version>2.14.3</mongo-java-driver.version>
         <com.gmongo.verson>1.5</com.gmongo.verson>
 
         <!-- == DBUnit == -->
-        <org.dbunit.dbunit.version>2.5.4</org.dbunit.dbunit.version>
+        <org.dbunit.dbunit.version>2.7.2</org.dbunit.dbunit.version>
 
         <!-- == Logback Contrib == -->
         <ch.qos.logback.contrib.version>0.1.5</ch.qos.logback.contrib.version>
-
-        <!-- == Groovy == -->
-        <org.codehaus.groovy.version>2.5.9</org.codehaus.groovy.version>
-
 
         <!-- == Project Properties == -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -148,12 +144,6 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <dependency>
-                <groupId>org.codehaus.groovy</groupId>
-                <artifactId>groovy-all</artifactId>
-                <version>${org.codehaus.groovy.version}</version>
-                <type>pom</type>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -217,6 +207,18 @@
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-dateutil</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-templates</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-json</artifactId>
             <scope>test</scope>
         </dependency>
 
@@ -329,9 +331,9 @@
                 </plugin>
                 <!-- license and formatter -->
                 <plugin>
-                    <groupId>com.google.code.maven-license-plugin</groupId>
-                    <artifactId>maven-license-plugin</artifactId>
-                    <version>${com.google.code.maven-license-plugin.version}</version>
+                    <groupId>com.mycila</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>${license-maven-plugin.version}</version>
                     <configuration>
                         <header>${project.root.basedir}/../license/header.txt</header>
                         <includes>
@@ -349,7 +351,7 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>net.revelc.code</groupId>
+                    <groupId>net.revelc.code.formatter</groupId>
                     <artifactId>formatter-maven-plugin</artifactId>
                     <version>${formatter-maven-plugin.version}</version>
                     <configuration>
@@ -368,12 +370,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>${exclude-property}</exclude>
-                        <exclude>${exclude-log}</exclude>
-                    </excludes>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -384,12 +380,12 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>net.revelc.code</groupId>
+                <groupId>net.revelc.code.formatter</groupId>
                 <artifactId>formatter-maven-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>com.google.code.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -430,10 +426,14 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <properties>
-                <exclude-property/>
-                <exclude-log/>
-            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
 
         <!-- Excluding application properties and log settings into package. -->
@@ -441,10 +441,20 @@
             <id>ExcludeSettings</id>
             <activation>
             </activation>
-            <properties>
-                <exclude-property>batch-application.properties</exclude-property>
-                <exclude-log>logback.xml</exclude-log>
-            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <configuration>
+                            <excludes>
+                                <exclude>batch-application.properties</exclude>
+                                <exclude>logback.xml</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
 
         <profile>
@@ -474,5 +484,4 @@
             </properties>
         </profile>
     </profiles>
-
 </project>
