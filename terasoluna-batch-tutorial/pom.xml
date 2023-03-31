@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.terasoluna.batch</groupId>
     <artifactId>terasoluna-batch-tutorial</artifactId>
-    <version>5.4.1.RELEASE</version>
+    <version>5.4.2.RELEASE</version>
 
     <name>TERASOLUNA Batch Framework for Java (5.x) Tutorial Project</name>
     <description>Tutorial Project using TERASOLUNA Batch Framework for Java (5.x)</description>
@@ -53,10 +53,11 @@
         <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
         <license-maven-plugin.version>4.1</license-maven-plugin.version>
         <formatter-maven-plugin.version>2.15.0</formatter-maven-plugin.version>
+        <sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
 
         <!-- == Dependency Versions == -->
         <!-- == Spring Boot Dependencies == -->
-        <org.springframework.boot.version>2.6.1</org.springframework.boot.version>
+        <org.springframework.boot.version>2.7.7</org.springframework.boot.version>
 
         <!-- == TERASOLUNA Batch == -->
         <terasoluna-batch.version>${project.version}</terasoluna-batch.version>
@@ -71,7 +72,7 @@
         <com.gmongo.verson>1.5</com.gmongo.verson>
 
         <!-- == DBUnit == -->
-        <org.dbunit.dbunit.version>2.7.2</org.dbunit.dbunit.version>
+        <org.dbunit.dbunit.version>2.7.3</org.dbunit.dbunit.version>
 
         <!-- == Logback Contrib == -->
         <ch.qos.logback.contrib.version>0.1.5</ch.qos.logback.contrib.version>
@@ -359,6 +360,11 @@
                         </configFile>
                         <lineEnding>LF</lineEnding>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonar-maven-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
