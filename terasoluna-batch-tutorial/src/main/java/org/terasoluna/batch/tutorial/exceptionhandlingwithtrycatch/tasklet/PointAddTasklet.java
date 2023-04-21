@@ -21,6 +21,7 @@ import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
+import org.springframework.batch.item.Chunk;
 import org.springframework.batch.item.ItemStreamReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.validator.ValidationException;
@@ -30,7 +31,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import org.terasoluna.batch.tutorial.common.dto.MemberInfoDto;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -100,12 +101,12 @@ public class PointAddTasklet implements Tasklet {
                 items.add(item);
 
                 if (items.size() == CHUNK_SIZE) {
-                    writer.write(items);
+                    writer.write(new Chunk(items));
                     items.clear();
                 }
             }
 
-            writer.write(items);
+            writer.write(new Chunk(items));
         } finally {
             reader.close();
         }

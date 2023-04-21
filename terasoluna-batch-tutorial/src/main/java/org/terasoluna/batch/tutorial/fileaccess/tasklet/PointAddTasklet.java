@@ -18,6 +18,7 @@ package org.terasoluna.batch.tutorial.fileaccess.tasklet;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
+import org.springframework.batch.item.Chunk;
 import org.springframework.batch.item.ItemStreamException;
 import org.springframework.batch.item.ItemStreamReader;
 import org.springframework.batch.item.ItemStreamWriter;
@@ -26,7 +27,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.terasoluna.batch.tutorial.common.dto.MemberInfoDto;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,12 +82,12 @@ public class PointAddTasklet implements Tasklet {
                 items.add(item);
 
                 if (items.size() == CHUNK_SIZE) {
-                    writer.write(items);
+                    writer.write(new Chunk(items));
                     items.clear();
                 }
             }
 
-            writer.write(items);
+            writer.write(new Chunk(items));
         } finally {
             try {
                 reader.close();

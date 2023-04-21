@@ -19,11 +19,9 @@ import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.StepExecution;
-import org.springframework.batch.core.listener.JobExecutionListenerSupport;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
-import java.util.function.Predicate;
 
 @Component
 public class JobExitCodeChangeListener implements JobExecutionListener {

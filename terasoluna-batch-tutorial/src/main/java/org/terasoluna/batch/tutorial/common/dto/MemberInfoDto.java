@@ -15,7 +15,7 @@
  */
 package org.terasoluna.batch.tutorial.common.dto;
 
-import javax.validation.constraints.Max;
+import jakarta.validation.constraints.Max;
 
 public class MemberInfoDto {
     private String id;

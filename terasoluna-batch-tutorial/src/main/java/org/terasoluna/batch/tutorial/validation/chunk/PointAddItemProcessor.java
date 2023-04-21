@@ -20,7 +20,7 @@ import org.springframework.batch.item.validator.Validator;
 import org.springframework.stereotype.Component;
 import org.terasoluna.batch.tutorial.common.dto.MemberInfoDto;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 @Component
 public class PointAddItemProcessor implements ItemProcessor<MemberInfoDto, MemberInfoDto> {

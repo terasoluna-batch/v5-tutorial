@@ -24,7 +24,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import org.terasoluna.batch.tutorial.common.dto.MemberInfoDto;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.util.Locale;
 
 @Component
